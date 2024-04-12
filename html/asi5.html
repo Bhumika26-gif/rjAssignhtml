@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>asing5</title>
+</head>
+
+<body style="background: #7ce2a9;">
+    <h2 id="top" style="color:rgb(226, 43, 177)">
+        Object Oriented Programming
+    </h2>
+    <DIV style="color: rgb(246, 4, 4);">
+        <ol type="1">
+            <li><a href="#1">Classes and Objects</a></li>
+            <li><a href="#2">Constructors</a></li>
+            <li><a href="#3">Friend Function</a></li>
+            <li><a href="#4">Access Modifiers</a></li>
+        </ol>
+    </DIV>
+
+    <div>
+        <h2 id="1">Classes and Objects</h2>
+        <p>A class is a user defined< data-type used to bind and associated functions together. It allows the data(and
+                functions) to be hidden, from external use. When defining a class, we are creating a new Abstract Data
+                Type(ADT)that can be treated like any other built- in data type.</p>
+                <p> The class body contains the declaration of variables and functions. These functions and variables
+                    are collectively called as members of the class. They are usually grouped under two visibility
+                    lables, namely, private and public.</p>
+                <p>The members that have been declarred as private can be acessed only by the member functionns. such
+                    data hiding using private declaration is the key feacture of object- oriented programming. The use
+                    of the keyword private is optional. By default, member of a class are privaate. Public members can
+                    be accessed from outside the class also. </p>
+                <p> An object is an instance of a class. It can be uniquely identified by its name. It has physical
+                    existence in the memory. Once a class has been declared, we can creae its objects in the same way as
+                    varibles of any other type. Thus, an object is the varible of type class. Eaxmple:</p>
+                <p>a class student is declared then we can create object of name as, Student s;</p>
+                <a href="#top">(Top)</a>
+                
+                
+        <h2 id="2">Characteristics of a Constructor function: </h2>
+                <ol>
+                    <li>Its name is same as name of its parent class.</li>
+                    <li>It gets invoked implicitly when an object of its class is created.</li>
+                    <li>It should be declarred in pubilc section of the class.</li>
+                    <li> It does not have return-type,(not even void)</li>
+                    <li>It can have default arguments</li>
+                    <li> It can be overloaded. </li>
+                    <li>It can not be Inherited. </li>
+                    <li> It can not be a virtual function.</li>
+                    <li>It can not contain argument of the same class to which it belongs.</li>
+                </ol>
+                <a href="#top">(Top)</a>
+
+        <h2 id="3">Characteristics of a Friend Function </h2>
+                <ol>
+                    <li> Unlike member function, a friend function is not invoked using an object name
+                        and the dot operator. It is invoked like a normal function. </li>
+                    <li>It can not aceess memberr names directly. It needs to use dot operator and object name to access
+                        members of that object. (e.g. s.rollno) </li>
+                    <li>It can not use this keyword.</li>
+                    <li>It may be declared in any ( private or public) part of the class.</li>
+                    <li>A friend function has at least one argument which is of the type of the class(of which it is a
+                        friend).</li>
+                    <li>A class can be friend of many classes.</li>
+                    <li>Member funtion of one class may be friend function of another class. </li>
+                    <li>Even a class can be friend of another class. In such case, all member functions of the friend
+                        class can access private members of the class.</li>
+                    <li>It is not in the score of the class to which it has been declared as friend.</li>
+                    <li>A friend function is not inherited.</li>
+                </ol>
+                <a href="#top">(Top)</a>
+
+        <h2 id="4">Access Modifiers </h2>
+                <p>There are three types of access modifiers in C++.</p>
+                <li>Public: A member declared with public access modifier is accessible outside the class.</li>
+                <li>Private: A member declared with private access modifier is not accessible outside the class except
+                    its friend functins. </li>
+                <li>Procted: A member declared with protected access modifier is not accessible outside the class its
+                    friend functions and derived classes.</li>
+                
+
+                <p>Following table summerizes score of members with different access modifiers.</p>
+                <table align="center" border="2">
+                    <tr>
+                        <th>Access Modifier</th>
+                        <th>Within class</th>
+                        <th>Derived class</th>
+                        <th>Other class</th>
+                    </tr>
+                    <TR>
+                        <td>Private</td>
+                        <td>Yes</td>
+                        <td>No</td>
+                        <td>No</td>
+                    </TR>
+                    <tr>
+                        <td>Protected </td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Public</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                    </tr>
+                </table>
+                <a href="#top">(Top)</a>
+    </div>
+
+</body>
+
+</html>
