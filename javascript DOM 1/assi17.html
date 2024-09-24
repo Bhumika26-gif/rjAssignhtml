@@ -1,0 +1,59 @@
+<html lang="en">
+<head>
+  <title>Ass16</title>
+  <style>
+    #container{
+            text-align: center;
+            font-size: x-large;
+            color: #f86c09;
+          margin: 50px auto;
+          padding: 30px;
+        }
+       
+        img{
+           
+            width: 400px;
+            height: 200px;
+            display: flex;
+           margin-left: auto;
+           margin-right: auto;
+           margin: 20px auto;
+        }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="checkboxes">
+      <input type="checkbox" class="bird" onclick="showBird('bird1.jpg', this)">Bird1
+      <input type="checkbox" class="bird" onclick="showBird('bird2.jpg', this)">Bird2
+      <input type="checkbox" class="bird" onclick="showBird('bird3.jpg', this)">Bird3
+    </div>
+    <div id="image-container">
+      <!-- images will be displayed here -->
+    </div>
+  </div>
+  <script>
+    let imageContainer = document.getElementById("image-container");
+
+    function showBird(imageSrc, checkbox) {
+      if (checkbox.checked) 
+      {  let img = document.createElement("img");
+        img.src = imageSrc;
+        imageContainer.appendChild(img);
+        
+      } 
+      else 
+      {  let imgs = imageContainer.getElementsByTagName("img");
+        for (let i = 0; i < imgs.length; i++) 
+        {
+          if (imgs[i].src === imageSrc) 
+          {
+            imageContainer.removeChild(imgs[i]);
+            break;
+          }
+        } 
+      }
+    }
+  </script>
+</body>
+</html>

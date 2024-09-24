@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Factors Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        #container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        input{
+            margin: 10px 0;
+            font-size: 18px;
+            padding: 10px;
+            width: 300px;
+            box-sizing: border-box; 
+        }
+        
+        button {
+            font-size: 18px;
+            padding: 10px;
+            width: 100%;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #results {
+            margin-top: 20px;
+        }
+        .result {
+            margin: 5px 0;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Factors Calculator</h1>
+        <input type="text" id="number" placeholder="Enter a number">
+        <button onclick="calculateFactors()">Calculate Factors</button>
+        <div id="results">          </div>
+    </div>
+
+    <script>
+        function calculateFactors() 
+        {
+            const num = parseInt(document.getElementById('number').value);
+            if (isNaN(num) || num <= 0) 
+            {
+                alert('Please enter a valid positive number');
+                return;
+            }
+
+            const factors = [];
+            for (let i = 1; i <= num; i++) 
+            {
+                if (num % i === 0) 
+                {
+                    factors.push(i);
+                }
+            }
+
+            document.getElementById('results').innerHTML = `
+                <div class="result">Factors of ${num}: ${factors.join(', ')}</div>
+            `;
+        }
+    </script>
+</body>
+</html>

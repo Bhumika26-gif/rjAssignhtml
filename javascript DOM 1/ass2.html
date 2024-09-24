@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            text-align: center;
+            margin-top: 50px; 
+            
+        }
+        .button{
+            font-size: larger;
+          margin-left: auto;
+          margin-right: auto;  
+          margin-bottom: auto; 
+         
+        }
+        #red:hover{
+            background-color: brown;
+            color: white;
+            padding: 5px;
+        }
+        #pink:hover{
+            background-color: rgb(215, 65, 192);
+            color: white;
+            padding: 5px;
+        }
+        #green:hover{
+            background-color: rgb(12, 78, 17);
+            color: white;
+            padding: 5px;
+        }
+        #yellow:hover{
+            background-color: yellow;
+            color: black;
+            padding: 5px;
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <div class="button"> 
+        <button style="background-color: brown;" id="red" onclick="changeColor('red')">red</button>
+        <button style="background-color: rgb(229, 78, 214);" id="pink" onclick="changeColor('pink')">pink</button>
+        <button style="background-color: rgb(20, 80, 9);" id="green" onclick="changeColor('green')">green</button>
+        <button style="background-color: rgb(206, 240, 10);" id="yellow" onclick="changeColor('yellow')">yellow</button>
+    </div>
+    
+    <script>
+        var colors=["red","pink","green","yellow"];
+        function changeColor(color)
+        {
+            document.body.style.backgroundColor=color;
+        }
+
+      // i= Math.floor(Math.random()*colors.length);
+        //document.body.style.backgroundColor=colors[i];
+       // console.log(colors[i]);
+
+        
+
+
+    </script>
+</body>
+</html>

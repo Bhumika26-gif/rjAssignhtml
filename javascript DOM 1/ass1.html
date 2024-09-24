@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Background Color</title>
+    <style>
+        body {
+            text-align: center;
+            margin-top: 50px; 
+            
+        }
+        .color {
+          font-size: larger;
+          margin-left: auto;
+          margin-right: auto;  
+          margin-bottom: auto;  
+        }
+    </style>
+</head>
+<body>
+
+    <div class="color">
+        <p id="colorValue">RGB(0, 0, 0)</p>
+    </div>
+
+    <script>
+        window.setInterval(changeBackgroundColor, 2000);
+        function getRandomValue() {
+         return Math.floor(Math.random() * 256);
+        }
+
+        function changeBackgroundColor() {
+            var r = getRandomValue();
+           var g = getRandomValue();
+            var b = getRandomValue();
+            var rgb = `rgb(${r}, ${g}, ${b})`;
+            document.body.style.backgroundColor = rgb;
+            document.getElementById('colorValue').innerText = `RGB(${r}, ${g}, ${b})`;
+            console.log(rgb);
+        }
+        
+        
+    </script>
+</body>
+</html>

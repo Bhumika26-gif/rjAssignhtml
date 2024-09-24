@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            border: 2px solid black;
+            width: 300px;
+            height:300px;
+           margin-left: auto;
+           margin-right: auto;
+            text-align: center;
+            flex-direction: column;
+            display: flex;
+           background-image: url(./product\ bgimg.avif);
+           background-size: cover;
+           background-repeat: no-repeat;  
+           padding:10px;
+        }
+        #contain{
+            text-align: center;
+            padding:10px;
+            margin:10px auto;
+            
+        }
+        #container-btn{
+            justify-content: space-between;
+            
+        }
+        button{
+            font-size: 40px;
+            padding: 6px 0;
+            margin: 0 4px;
+            font-size: 30px;
+            background-color: rgb(149, 228, 228);
+            width: 45px;
+            height:45px;
+            cursor: pointer;  
+        }
+        button:hover{
+            background-color: blue;  
+        }
+        button:focus{
+            outline:1px solid black;
+        }
+        input{
+          font-size: 20px;
+          margin-bottom: 20px;
+          text-align:justify;
+          font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        #result{
+            font-weight: 200;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+       <div id="contain">
+            <input type="text" id="no1" placeholder="Enter First Number">
+            <input type="text" id="no2" placeholder="Enter Second Number">
+            <input type="text"  placeholder="Enter Total" readonly id="result">
+        </div>
+        <div id="container-btn">
+          <button id="+" onclick="calculate(this.id)">+</button>
+          <button id="-" onclick="calculate(this.id)">-</button>
+          <button id="*" onclick="calculate(this.id)">*</button>
+          <button id="/" onclick="calculate(this.id)">/</button>
+          <button id="clr" onclick="clr()">C</button>
+        </div>
+    </div>
+    <script>
+          var n1=document.getElementById("no1");
+          var n2=document.getElementById("no2");
+          var res=document.getElementById("result");
+
+          document.getElementById("+").addEventListener("click", function(){
+            res.value = parseInt(n1.value)+parseInt(n2.value);
+          });
+          document.getElementById("-").addEventListener("click", function(){
+            res.value = parseInt(n1.value)-parseInt(n2.value);
+          });
+          document.getElementById("*").addEventListener("click", function(){
+            res.value = parseInt(n1.value)*parseInt(n2.value);
+          });
+          document.getElementById("/").addEventListener("click", function(){
+            res.value = parseInt(n1.value)/parseInt(n2.value);
+          });
+          function clr() {
+            document.getElementById('no1').value = '';
+            document.getElementById('no2').value = '';
+            document.getElementById('result').value = '';
+            
+        }
+
+
+    </script>
+</body>
+</html>

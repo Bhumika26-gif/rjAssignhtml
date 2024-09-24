@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Change Border</title>
+  <style>
+    .container{
+     
+        margin-right: auto;
+        margin-left: auto;
+        margin-bottom: auto;
+        width: 700px;
+    }       
+    #box {
+  width: 650px;
+  height: 200px;
+  background-color: lightgray;
+  margin: 20px;
+  /* Adding transition for smooth effect */
+  padding: 10px;
+}
+.conbutton{
+  text-align: center;
+  margin: 20px auto;
+}
+
+button:hover{
+  border: 3px solid rgb(217, 30, 195);
+  padding: 5px;
+
+}
+#button{
+  
+  text-align: center;
+  padding:10px;
+}
+
+  </style>
+</head>
+<body>
+    <div class="container">
+      <div class="conbutton"></div>
+      <div id="button">
+      <button id="btn" onclick="changeBorder('5px solid red')">line Border</button>
+      <button id="btn" onclick="changeBorder('5px dashed blue')"> Dashed Border</button>
+      <button id="btn" onclick="changeBorder('5px dotted green')"> Dotted Border</button>
+      </div>
+      <div id="box">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis in alias error repellat sequi quae ab optio. Nam distinctio dolor est enim repellat dignissimos vero repellendus! Quos unde eveniet minus! Voluptatem perspiciatis commodi reprehenderit maiores autem qui aspernatur quidem quae dicta, magnam minus nulla, pariatur provident maxime nam cumque architecto tempore fugit praesentium ut! Architecto ea illum facilis, dolor eius quos, exercitationem ipsum doloremque autem quam nihil deserunt eligendi! Nemo quam autem pariatur libero corporis eum dolorem, recusandae exercitationem iure sequi doloribus tenetur itaque adipisci consectetur vero accusamus rerum rem molestias? Harum temporibus magnam perspiciatis maiores reiciendis quisquam repellat? Maiores?
+       </div>
+    </div>
+
+
+  <script>
+    
+    function changeBorder(borderStyle)
+     {  var button = document.getElementById('button');
+        var box = document.getElementById('box');
+        box.style.border = borderStyle;
+        button.style.border =borderStyle;
+     }
+
+
+  </script>
+</body>
+</html>

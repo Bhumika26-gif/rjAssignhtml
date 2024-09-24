@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div, p,h1{
+            color: red;
+        }
+    </style>
+    
+</head>
+<body>
+    <h1 id="special">.........</h1>
+    <h2>........</h2>
+    <DIV class="target">......</DIV>
+    <P class="target">.....</P>
+    <DIV class="target">.......</DIV>
+    <P >....... </P>
+    <BUTTON id="1" onclick="changeColor(this.id)">Hello</BUTTON>
+    <BUTTON id="2" onclick="changeColor(this.id)">Bye Bye</BUTTON>
+
+    <script>
+        //FIRST EX.USING STYLE ND INEERHTMLND
+        //document.body.style.backgroundColor="BLACK";
+        //document.body.innerHTML="JAVASCRIPT IS VERY GREAT LANGAUGE";
+        //Document.body.setAttribute("class", "bc2");
+
+               //Q1. bgcolor show again & again
+       // var colors=["pink","green","black","red"];
+       // var i=0;
+        //window.setInterval(function ()
+        //{
+           // document.body.style.backgroundColor = colors[i];
+            //console.log(colors[i]);
+            //i = (i+1)% colors.length;
+       // }, 1000);
+
+             //Q2. pick up color randomly
+        // var colors=["pink","green","black","red"];
+        //var i=0;
+        //window.setInterval(function ()
+        //{
+           // i=Math.floor(Math.random()*colors.length);
+           // document.body.style.backgroundColor= colors[i];
+           // console.log(colors[i]);  
+        //}, 1000);
+
+             //Q3. bgcolor using Click bUTTON ON CONSOLE SHOW SOMETHING
+        //var colors=["pink","green","black","red"];
+            //function changeColor()
+            //{
+            //   i=Math.floor(Math.random()*colors.length);
+             //   document.body.style.backgroundColor= colors[i];
+               // console.log(colors[i]);  
+            //}
+                //Q4. Instead of change bgcolor of body button should change text in body.
+            var colors=["pink","green","black","red"];
+            function changeColor(id)
+            {
+                //FIND SOURCE OF EVENT
+                var s1="hello guys, how are you all?";
+                var s2="bye bye, guys see you";
+
+               // var eleh1=document.getElementsByTagName("h1");
+               // var ele_special=document.getElementById("special");
+               //var ele_target=document.getElementsByClassName("target");
+               var ele_target=document.querySelectorAll("div, p, h2");
+               console.log(ele_target);
+
+                if(id==1)
+                {
+                //ele_target.innerHTML=s1;
+                for(e of ele_target)
+                {
+                    e.innerHTML= s1;
+                }
+                }
+                else
+                {
+                //ele_target.innerHTML=s2;
+                for(e of ele_target)
+                {
+                    e.innerHTML= s2;
+                }
+                }
+            }
+
+
+    </script>
+</body>
+</html>

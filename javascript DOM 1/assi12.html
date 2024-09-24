@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>conversion of distance</title>
+    <style>
+        body{
+            background-color: antiquewhite;
+           text-align: center;
+           display: flex;
+           padding: 50px;
+        }
+        .container{
+            width: 400px;
+            height: 100px;
+            border: 5px dotted rgb(101, 10, 238);
+            margin-left: auto;
+            margin-right: auto;
+            padding: 30px;
+           
+        }
+        input{
+            padding: 10px;
+            width: 300px;
+            border-radius: 10px;
+        }
+        #covesion{
+          
+            font-size: large;
+            margin: 20px auto;
+           color: rgb(113, 51, 51);
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <input type="text" placeholder="enter value" id="ip" onkeyup="convertDistance()">
+    <div id="covesion">
+        <div id="m" class="distance">     </div>
+        <div id="ft" class="distance">     </div>
+        <div id="inches" class="distance">     </div>
+    </div>
+    </div>
+
+   <script>
+  function convertDistance() {
+        var km = document.getElementById('ip').value;
+        var meters = km * 1000;
+        var feet = km * 3280.84;
+        var inches = km * 39370.1;
+
+        document.getElementById('m').innerText = km ? meters + ' meters' : '';
+        document.getElementById('ft').innerText = km ? feet + ' feet' : '';
+        document.getElementById('inches').innerText = km ? inches + ' inches' : '';
+    }
+   </script>
+    
+</body>
+</html>

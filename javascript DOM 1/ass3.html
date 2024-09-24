@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            text-align: center;
+            margin-top: 50px; 
+        } 
+        .button{
+            font-size: larger;
+          margin-left: auto;
+          margin-right: auto;  
+          margin-bottom: auto;
+          padding-bottom: 10px; 
+        }
+        #container {
+            width: 700px;
+            height: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 20px;
+            border: 2px solid black;
+           
+        }
+    </style>
+</head>
+<body>
+    <div class="button">
+        <button  id="red" onclick="changeColor(this.id)" >   Click Me   </button>
+    </div>
+    
+    <div id="container">
+
+
+    </div>
+    <div id="text">
+
+    </div>
+    
+
+    <script>
+         var colors = ['Red', 'Black', 'Green', 'Pink'];
+        let i = 0;
+
+        let ele_para = document.getElementById("container");
+        let ele_para1 = document.getElementById("text");
+        let ele_red = document.getElementById("red");
+
+
+        function changeColor(id) {
+           ele_para1.style.color = colors[i];                 //text color change according to 
+            ele_para1.innerText = colors[i];                 //ineertext
+            //ele_para1.style.color = "black";                //
+            ele_para.style.backgroundColor = colors[i];       //box bgcolor
+            ele_red.style.background=colors[i+1];            
+            //Button bgcolor also change with next color like(if container show red color then in button bgcolor show their next cl "black")
+
+            i = (i + 1) % colors.length;  // increaase 1-1 no upto colorlength
+
+        }
+
+       
+    </script>
+
+    
+</body>
+</html>

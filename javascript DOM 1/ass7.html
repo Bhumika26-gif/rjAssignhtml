@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Like/Dislike</title>
+    <style>
+      body
+      {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        
+      }
+      #common{
+        width: 600px;
+      }
+      #container
+      {
+        text-align: center;
+        width:60%;
+        font-size: 20px;
+      }
+      #post
+      {
+        background-color: rgb(23, 172, 226);
+        color: white;
+        text-align:justify;
+        
+      }
+      button
+      {
+        padding: 5px;
+        margin: 10px;
+      }
+      span
+      {
+        padding: 0px;
+      }
+      .green
+      {
+        color: green;
+      }
+      .red
+      {
+        color: red;
+      }
+      #div-like, #div-dislike
+      {
+        display: inline-block;
+        margin: 5px 10px;
+      }
+    </style>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div id="common">
+        <div id="container">
+            
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfW455AXzdeB2ZN9QKGPpqObq9eKXHm6cU6g&s" alt="">
+        <div id="btn-grp">
+            <button id="btn-like" onclick="addLikes()">Like</button>
+            <button id="btn-dislike" onclick="addDisLikes()">Dislike</button></div>
+        <div id="cnt-grp">
+            <div id="div-like">
+            <i class="far fa-thumbs-up green mr-3"></i>  <span id="cnt-like">0</span>
+            </div>
+            <div id="div-dislike">
+            <i class="far fa-thumbs-down red mr-3"></i> <span id="cnt-dislike">0</span>
+            </div>      
+        </div> 
+
+
+        
+       
+    </div>
+    <script>
+      var cnt1=0, cnt2=0;
+      
+      var ele_btn_like=document.getElementById("btn-like");
+      var ele_btn_dislike=document.getElementById("btn-dislike");
+      
+      var ele_cnt1=document.getElementById("cnt-like");
+      var ele_cnt2=document.getElementById("cnt-dislike");
+  
+      ele_cnt1.innerHTML=0;
+      ele_cnt2.innerHTML=0;
+      function addLikes()
+      {
+        cnt1++;
+        ele_cnt1.innerHTML=cnt1;
+      }
+      function addDisLikes()
+      {
+        cnt2++;
+        ele_cnt2.innerHTML=cnt2;
+      }
+    </script>
+  
+  </body>
+  </html>
+
+
+  

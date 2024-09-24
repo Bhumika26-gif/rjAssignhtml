@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Calculator</title>
+    <style>
+       
+        .body{
+            background: #e99090;
+            width: 700px;
+            height: 300px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 20px;
+
+        }
+        .class{
+            padding: 10px;
+        }
+        input{
+            height: 20px;
+            margin-top: 10px; 
+        }
+       .result{
+           
+            color: rgb(211, 44, 44);
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+           margin-top: 0px;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Loan Calculator</h1>
+    <div class="body">
+       <div >
+            Loan Amount (₹):
+            <input type="number"placeholder="Enter Value" id="amount"> 
+        </div>
+       <div >
+            Annual Interest (%):
+            <input type="number" id="interest">
+        </div>
+       <div >
+            Repayment periods(monthly):  
+            <input type="number" id="tenure">
+        </div>
+        <div class="result">
+        <h2 id="emi"> </h2>
+        <h2 id="totalAmount"> </h2>
+        <h2 id="totalInterest"> </h2>
+    </div>
+     
+    </div>
+
+    <SCRIPT>
+     window.onload = () => {
+    const inputs = document.querySelectorAll("input");
+
+    inputs.forEach(input => {
+        input.addEventListener('change', calculateLoan)
+    })
+    }
+
+function calculateLoan () {
+    const principal = document.querySelector('#amount').value;
+    const interestRate = document.querySelector('#interest').value;
+    const tenure = document.querySelector('#tenure').value;
+
+    if (!principal || !interestRate || !tenure) return;
+
+    const monthlyInterest = interestRate / 100 / 12;
+    const emi = principal * monthlyInterest * Math.pow(1 + monthlyInterest, tenure) / (Math.pow(1 + monthlyInterest, tenure) - 1);
+
+    const totalAmount = emi * tenure;
+    const totalInterest = totalAmount - principal;
+
+    document.querySelector('#emi').innerText = 'EMI: ₹' + emi.toFixed(2);
+    document.querySelector('#totalAmount').innerText = 'Total Amount: ₹' + totalAmount.toFixed(2);
+    document.querySelector('#totalInterest').innerHTML = 'Total Interest: ₹' + totalInterest.toFixed(2);
+}
+ 
+</SCRIPT>
+    
+</body>
+</html>

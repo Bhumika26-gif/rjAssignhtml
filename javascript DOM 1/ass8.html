@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Quantity Selector</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+          
+        }
+         body {
+            display: flex;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif; 
+            background-image:url(./prodctbgimg.jpg);
+            background-repeat: no-repeat;
+            background-size:1500px;
+           
+        }
+        .background{
+            display: flex;
+            opacity: 0.8;
+        }
+    .product-container {
+        margin: 20px;
+        size: 50px;
+        background: rgb(224, 230, 204);
+        padding: 20px;
+        border: 2px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        height: 450px;
+        width: 300px;
+    
+    }
+
+    .quantity-selector {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    button {
+        font-size: 16px;
+        padding: 10px 20px;
+        margin: 5px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    #decrement {
+        background-color: white;
+        color: black;
+    }
+
+    #increment {
+        background-color: white;
+        color: black;
+    }
+
+    button:hover {
+        opacity: 0.9;
+    }
+
+    #quantity {
+        font-size: 24px;
+        margin: 0 20px;
+        color:red;
+    }
+    img{
+        width: 250px;
+        
+    }
+    h2{
+        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        color: rgb(8, 169, 233);
+    }
+      #price{
+        margin: 10px;
+        color: rgb(20, 19, 20);
+        font-size: 10px;
+      }
+      H3{
+        font-size: small;
+      }
+      #total {
+        width: 100%;
+        padding-top: 7px;
+        color: rgb(19, 18, 18);
+        font-size: 150%;
+      }
+      #btn-add,
+      #btn-sub {
+        width: 25%;
+        background-color: paleturquoise;
+        padding: 5px;
+        font-size: 20px;
+      }
+      #qty {
+        text-align: center;
+        width: 50%;
+        padding-top: 7px;
+        color: red;
+        font-size: 150%;
+      }
+      .hide {
+        display: none;
+      }
+    </style>
+    </head>
+    <body>
+        <div class="background">
+            <div class="product-container">
+                <img src="./lipglow.jpg" alt="">
+                <h3>Kay Beauty Lip-Glow (20g)</h3>
+                <div id="price">MRP:₹699 25% Off
+                </div>
+                <div class="quantity-selector">
+                    <button id="btn-dec">-</button>
+                    <div id="qty" onclick="updateTotal()">0</div>
+                    <button id="btn-inc" onclick="updateTotal()">+</button>
+                   
+                </div>
+                <div id="total">    </div>
+            </div>
+            <div class="product-container1">
+                <img src="./Eyeshadow palette.jpg" alt="">
+                <h3>Kay Beauty Multi Texture Eyeshadow Palette - Twilight(15g)</h2>
+                <div id="price">MRP: ₹ 1200/- 32% off</div>
+                <div class="quantity-selector">
+                    <button id="btn-dec1" onclick="updateTotal()">-</button>
+                    <div id="qty1">0</div>
+                    <button id="btn-inc1" onclick="updateTotal()">+</button>
+                   
+                </div>
+                <div id="total1">      </div>
+            </div>
+            <div class="product-container2">
+                <img src="./foundation.jpg" alt="">
+                <h3>Kay Beauty Hydrating Foundation - 115P Light
+                    (30gm)</h3>
+                <div id="price2">MRP:
+                    ₹974
+                    20% Off
+                   </div>
+                <div class="quantity-selector2">
+                    <button id="btn-dec2" onclick="updateTotal()">-</button>
+                    <div id="qty2">0</div>
+                    <button id="btn-inc2" onclick="updateTotal()">+</button>
+                    
+                </div>
+                <div id="total2">      </div>
+            </div>
+        </div>
+        
+        
+
+        <script>
+          var data=[]
+            var ele_btn_add = document.getElementById("btn-inc");
+  var ele_btn_sub = document.getElementById("btn-dec");
+  var ele_qty = document.getElementById("qty");
+  var ele_total = document.getElementById("total");
+  
+  var price = 699;
+  var price1 =12000; // Price per item
+  var quantity = 0; // Initial quantity
+  
+  function updateTotal() {
+    ele_total.textContent = "Total: Rs. " + (price * quantity) + "/-";
+  }
+  
+  ele_btn_add.addEventListener("click", function() {
+    quantity++;
+    ele_qty.textContent = quantity;
+    updateTotal();
+  });
+  
+  ele_btn_sub.addEventListener("click", function() {
+    if (quantity > 0) {
+      quantity--;
+      ele_qty.textContent = quantity;
+      updateTotal();
+    }
+  });
+</script>
+</body>
+</html>

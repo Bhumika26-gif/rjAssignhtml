@@ -1,0 +1,67 @@
+<!--  save this file as index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Player Name</title>
+    <style>
+      body {
+    display: flex;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.container {
+  border: 2px solid black;
+  border-radius: 10px;
+  margin: 20px;
+}
+
+button {
+    font-size: 16px;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #4caf50;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+#playerName {
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+    </style>
+</head>
+<body>
+    <button id="showPlayerBtn">Show Player Name</button>
+
+    <div class="container">
+        <div id="playersName"></div>
+    </div>
+
+
+    <script>
+    var playersName=["Virat Kohli", "Rohit Sharma", "ms Dhoni",  "Hardik Pandya", "Shubman Gill", "Prithvi Shaw", "Mayank Agarwal", "Abhimanyu Easwaran", "Priyank Panchal",
+                    "Cheteshwar Pujara",  "Ajinkya Rahane", "Hanuma Vihari", "KL Rahul",
+                    "Washington Sundar", "Ravindra Jadeja"];
+      let i=0;
+      document.getElementById('showPlayerBtn').addEventListener('click', () => {
+    
+    
+    document.querySelectorAll('#playersName')[0].innerHTML += playersName[i]+" ";
+    i++;
+    });
+
+    </script>
+</body>
+</html>

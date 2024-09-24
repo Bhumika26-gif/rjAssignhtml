@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+    <style>
+        body {
+        align-items: center;
+       
+       }
+
+        .watch {
+            width: 700px;
+            margin-top: 90px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            background-image: url(download.jpeg);
+          background-repeat: no-repeat;
+            background-size:100%;;
+            padding: 30px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #displayTime {
+            font-size: 40px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+            color: #ddd;
+        }
+
+        button {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 8px;
+            border-radius: 5px;
+           cursor: default;
+        }
+
+        #startBtn {
+            background-color: #6706ee;
+            color: white;
+        }
+
+        #stopBtn {
+            background-color: #ee2a2a;
+            color: white;
+        }
+
+        #clearBtn {
+            background-color: #ff9800;
+            color: white;
+        }
+
+        button:hover {
+            opacity: 3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="watch">
+        <button id="startBtn">Start</button>
+        <div id="displayTime">00:00</div>
+        <button id="stopBtn">Stop</button>
+        <button id="clearBtn">Clear</button>
+    </div>
+<script >
+    let timer;
+    let isRunning = false;
+    let min = 0, sec = 0;
+
+    function updateDisplay() {
+    let displayTime = document.getElementById('displayTime');
+    displayTime.textContent = `${String(min).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
+    }
+
+    function startTimer() 
+    {
+        if (!isRunning) {
+            isRunning = true;
+            timer = setInterval(() => {
+                sec++;
+                    if (sec === 60) {
+                        sec = 0;
+                        min++;
+                    }
+                
+                updateDisplay();
+            }, 1000);
+        }
+    }
+
+    function stopTimer() 
+    {
+        if (isRunning) {
+            isRunning = false;
+            clearInterval(timer);
+        }
+    }
+
+    function clearTimer()
+    {
+        stopTimer();
+        min = 0;
+        sec = 0;
+    
+        updateDisplay();
+    }
+
+    document.getElementById('startBtn').addEventListener('click', startTimer);
+    document.getElementById('stopBtn').addEventListener('click', stopTimer);
+    document.getElementById('clearBtn').addEventListener('click', clearTimer);
+
+    updateDisplay(); // Initialize display
+
+</script>
+</body>
+</html>

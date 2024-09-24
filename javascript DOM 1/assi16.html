@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>img radio</title>
+    <style>
+        #container{
+            text-align: center;
+            font-size: x-large;
+            color: #f86c09;
+          margin: 50px auto;
+          padding: 30px;
+        }
+       
+        img{
+            border: 1px solid black;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="radiobtns">
+          <input type="radio" name="bird" class="bird" onclick="showBird('bird1.jpg')">Bird1
+          <input type="radio" name="bird" class="bird" onclick="showBird('bird2.jpg')">Bird2
+          <input type="radio" name="bird" class="bird" onclick="showBird('bird3.jpg')">Bird3
+        </div>
+        <div><img src="" alt="" id="birdimage">
+            
+        </div>
+      </div>
+    <script>
+         let eleImg = document.getElementById("birdimage");
+
+        function showBird(imageSrc)
+        {
+            eleImg.src = imageSrc;
+        }
+    </script>
+</body>
+</html>

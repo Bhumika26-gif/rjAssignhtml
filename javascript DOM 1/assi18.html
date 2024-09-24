@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sal cal(m/f)</title>
+    <style>
+        *{
+            cursor:pointer;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .container{
+            width: 500px;
+            height: 250px;
+            background-color:brown;
+            color: black;
+            text-align: center;
+            margin: 20px auto;
+            padding: 30px;
+        }
+        .first{
+            padding: 10px;
+            font-size: larger;
+        }
+        input{
+            
+            padding: 6px;
+        }
+        .radio{
+            color: aqua;
+            padding: 30px;
+        }
+        button:hover{
+          color: bisque;
+          background-color: burlywood;
+            padding: 9px;
+        }
+        button{
+            padding: 5px; 
+        }
+        #result{
+            
+            padding: 20px;
+            margin: 20px auto;
+            color: chartreuse;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="first">
+            Days: <input type="text" placeholder="Enter Days" name="text" id="days">
+        </div>
+        <div class="radio">
+            <input type="radio" name="radio" id="male" onclick="selectGender(this.value)">Male
+            <input type="radio" name="radio" id="female" onclick="selectGender(this.value)">Female
+        </div>
+        <button id="btn" onclick="showSalary()">Calculate Salary</button>
+        <div id="result">
+
+        </div>
+    </div>
+    <script>
+
+      var days, salary,wage, bonus,gender="male";
+      var ele_days=document.getElementById("days");
+      var ele_salary=document.getElementById("result");
+      function showSalary()
+      {
+        days = parseInt(ele_days.value);              // get the value from the input element
+        calSalary();           // call the calSalary function
+        ele_salary.innerHTML = "Salary: " + salary + "/-";
+                              // calSalary() calculates salary, use it to find the salary
+      }
+      
+      function calSalary() {
+        if(days>22)
+        {
+          wage=900;
+        }
+        else
+        {
+          wage=500;
+        }
+        if(gender=="female")
+        {
+          wage-=300;
+        }
+        if(days>15 && gender=="male")
+        {
+          bonus=2500;
+        }
+        else if(days>15 && gender=="female")
+        {
+          bonus=500;
+        }
+        else
+        {
+          bonus=0;
+        }
+        salary=days*wage+bonus;
+      }
+    </script>
+    
+    
+</body>
+</html>
