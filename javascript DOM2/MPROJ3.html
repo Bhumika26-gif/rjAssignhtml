@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Pt StdRec Del Btn</title>
+    <style>
+      body {        
+        color: Black;         
+        font-family: Arial, Helvetica, sans-serif; 
+      }       
+      table,td {         
+        margin: auto; 
+      }       
+      td {        
+         width: 100px;         
+         text-align: center;        
+        background-color: cornflowerblue;    
+        color: white;         
+        padding: 10px; 
+      }       
+      h1 {         
+        text-align: center;        
+         color: cornflowerblue ; 
+      }       
+      button {         
+        background-color: navy;         
+        color: white;         
+        font-size: 20px; 
+      } 
+      .btn-grp { 
+        margin-bottom: 20px;         
+        text-align: center; 
+      } 
+ 
+      .active {         
+        color: red; 
+      } 
+      .div-rbtn {        
+        margin: 5px 30px;         
+        display: inline; 
+      } 
+      #search{
+       text-align: center;
+       padding: 20px;
+      }
+      #msg{
+        color:red;
+        font-size: small;
+        text-align: center;
+      }
+        
+    </style>
+
+</head>
+<body>
+    <h1 id="heading"> </h1>
+    <div id="search"><input type="text" name="" id="ip-txt" placeholder="Enter name"></div>
+<div class="btn-grp">
+<div class="div-rbtn">
+ Show All<input type="radio" name="show" id="" checked />
+</div>
+<div class="div-rbtn">
+ Marks>=50<input type="radio" name="show" id="" />
+</div>
+<div class="div-rbtn">
+ Marks<50<input type="radio" name="show" id="" />
+</div>
+</div>
+<h4 id="msg"></h4>
+<table id="table-student"></table>
+
+
+    <table id="table-student" >  </table>
+    <script>
+        var data = [
+            {rollno: "01", name:"Satish", marks:"96.1"},
+            {rollno: "02", name:"atish", marks:"34.1"},
+            {rollno: "03", name:"toshu", marks:"66"},
+            {rollno: "04", name:"ratish", marks:"90"},
+            {rollno: "05", name:"Schin", marks:"56.1"},
+            {rollno: "06", name:"Samarth", marks:"72."},
+            {rollno: "07", name:"siya", marks:"66.7"},
+            {rollno: "08", name:"manan", marks:"88.24"},
+            {rollno: "09", name:"piyu", marks:"71"},
+            {rollno: "10", name:"rasik", marks:"52.0"},
+            {rollno: "11", name:"Salman", marks:"84.65"},
+            {rollno: "12", name:"Sarika", marks:"42.9"},
+            {rollno: "13", name:"gopal", marks:"39.6"},
+            {rollno: "14", name:"bhumi", marks:"74.3"},
+            {rollno: "15", name:"puja", marks:"50.8"},
+        ];
+
+        var filtered_data=data;
+        var ele_table=document.getElementById("table-student");
+        var ele_rbtns=document.querySelectorAll("input[type='radio']");
+        var ele_heading=document.getElementById("heading");
+        var ele_iptxt=document.getElementById("ip-txt");
+        ele_iptxt.addEventListener("keyup",function()
+        {
+            var target=ele_iptxt.value;
+                //indexOf()
+            var matched_data=filtered_data.filter((data) => data.name.toLowerCase().indexOf(target.toLowerCase())!=-1);    ///also use casesensetive
+            console.log(matched_data);
+            showTable(matched_data);
+        }); 
+
+        ele_rbtns.forEach(function(d, index)
+        {
+            d.addEventListener("change", function()
+            {
+                if(index==0)
+                {    ///all
+                    filtered_data=data;
+                }
+                else if(index==1)
+                {    //marks>50
+                    filtered_data=data.filter((value )=> value.marks>=50);
+                }
+                else if(index==2)
+                {   //marks<50
+                    filtered_data=data.filter((value )=> value.marks<50);
+                }
+                showTable(filtered_data);
+            })
+        });
+        var columnNames=["rollno", "name", "marks"];
+        showTable(filtered_data);
+
+        function showTable(selected_data)
+        {
+            var html="";
+                for(var i=0; i< selected_data.length; i++)
+                {
+                 html+="<tr>" ;
+                for(var j=0; j<columnNames.length; j++)
+                {
+                   html+="<td>"+ selected_data[i][columnNames[j]] +"</td>";
+                }    //inner for loop
+                html +=`<td> <input type="button" class="btn-delete" value="Delete" id=${selected_data[i].name} /> </td>`;
+                html+= "</tr>";
+            }   //outer for loop
+        ele_table.innerHTML=html;
+        handleDeleteStudent();
+        showHeading(selected_data);
+        }
+        
+        function showmsg(msg){
+            var ele_msg=document.getElementById("msg");
+            ele_msg.innerHTML=msg;
+            window.setTimeout(() => ele_msg.innerHTML="", 2000);
+        }
+        function handleDeleteStudent(){
+                 //handle event generated by delelte button, we will ask to user whether they really wants delete(yes/no), to paerticular stucture
+            document.querySelectorAll(".btn-delete").forEach((e, index) =>
+            {
+                e.addEventListener("click", () =>
+                {   
+                    var ans =window.confirm("Do you really want to Delete this data of "+e.id);
+                    if(ans==true)
+                    {     //yes, delete the record whose name is e.id from data array
+                        data=data.filter( (s) => s.name!=e.id);
+                         //displau  modified table
+                         showTable(data);
+                         showmsg("Student "+e.id+" deleted...");
+
+                    }else
+                    {       //no, dont delete
+                        showmsg("Delete operation cancelled");
+                    }
+                    
+                   console.log("button clicked"); 
+                })
+            })
+        }
+
+        function showHeading(d)
+        {
+            ele_heading.innerHTML="Student's Data("+ d.length+")";
+        }
+        //add data of students to table dyanamically
+        //innerhtml  / createElemen() method
+
+
+    </script>
+</body>
+</html>

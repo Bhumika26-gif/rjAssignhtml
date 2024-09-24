@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>mini prj using EDIT btn</title>
+<style>
+body {
+color: Black;
+font-family: Arial, Helvetica, sans-serif;
+text-align: center;
+ }
+table,
+td {
+margin: auto;
+ }
+td {
+width: 100px;
+text-align: center;
+background-color: cornflowerblue;
+color: white;
+padding: 10px;
+ }
+h1 {
+color: cornflowerblue;
+ }
+button {
+background-color: navy;
+color: white;
+font-size: 20px;
+ }
+.btn-grp {
+margin-bottom: 20px;
+ }
+.active {
+color: red;
+ }
+#search {
+margin: 10px;
+ }
+.div-rbtn {
+margin: 5px 30px;
+display: inline;
+ }
+.wrapper_ip {
+/* width: 50%; */
+margin: 10px;
+padding: 10px;
+ }
+#div-edit {
+margin: 10px auto;
+background-color: cornflowerblue;
+/* border: 2px dotted black; */
+width: 50%;
+text-align: center;
+ }
+#btn-grp-edit input {
+margin: 10px;
+padding: 5px;
+ }
+.hide {
+display: none;
+ }
+#message {
+color: red;
+font-size: smaller;
+ }
+</style>
+</head>
+<body>
+<h1 id="heading"></h1>
+<div id="div-list">
+<div id="search">
+<input type="text" name="" id="ip-txt" placeholder="Enter name" />
+</div>
+<div class="btn-grp">
+<div class="div-rbtn">
+ Show All<input type="radio" name="show" id="" checked />
+</div>
+<div class="div-rbtn">
+ Marks>=50<input type="radio" name="show" id="" />
+</div>
+<div class="div-rbtn">
+ Marks<50<input type="radio" name="show" id="" />
+</div>
+</div>
+<div id="message"></div>
+<table id="table-student"></table>
+</div>
+<div id="div-edit" class="hide">
+<div class="wrapper_ip">
+ Rollno: <input type="text" name="" id="student-rollno" />
+</div>
+<div class="wrapper_ip">
+Name: <input type="text" name="" id="student-name" />
+</div>
+<div class="wrapper_ip">
+ Marks: <input type="text" name="" id="student-marks" />
+</div>
+<div id="btn-grp-edit">
+<input type="button" id="save-btn" value="Save" disabled /><input
+type="button"
+id="cancel-btn"
+value="Cancel"
+/>
+</div>
+</div>
+<script>
+    var action = "list";
+    var list_type = "complete";
+    var currentStudentId;
+    console.log("start app...");
+    var data = [
+    { rollno: "10", name: "Satish", marks: 83.3 },
+    { rollno: "11", name: "Nutan", marks: 55.0 },
+    { rollno: "12", name: "Roopal", marks: 38.2 },
+    { rollno: "18", name: "Sahil", marks: 75.8 },
+    { rollno: "19", name: "Anish", marks: 69.6 },
+    { rollno: "20", name: "Jeevan", marks: 33.1 },
+    { rollno: "21", name: "Saurav", marks: 56.4 },
+    { rollno: "22", name: "Leena", marks: 87.5 },
+    { rollno: "23", name: "Neelam", marks: 19.2 },
+    { rollno: "25", name: "Ganesh", marks: 69.9 },
+    { rollno: "27", name: "Sarika", marks: 64.2 },
+    { rollno: "29", name: "Rohan", marks: 45.5 },
+    ];
+    for (var i = 0; i < data.length; i++) {
+    data[i].studentId = i + 1;
+    }
+    var filtered_data = data;
+    var ele_table = document.getElementById("table-student");
+    var ele_rbtns = document.querySelectorAll("input[type='radio']");
+    var ele_heading = document.getElementById("heading");
+    var ele_iptxt = document.getElementById("ip-txt");
+    var ele_divlist = document.getElementById("div-list");
+    var ele_divedit = document.getElementById("div-edit");
+    // div-edit input
+    document.querySelectorAll("#div-edit input").forEach((e) => {
+        e.addEventListener("keyup", () => {
+            document.getElementById("save-btn").disabled = false;
+        });
+    });
+    document.getElementById("cancel-btn").addEventListener("click", () =>
+     {
+        handelCancelSaveStudent();
+    });
+    document.getElementById("save-btn").addEventListener("click", () => 
+    {
+        document.getElementById("save-btn").disabled = true;
+        handelSaveStudent();
+    });
+
+    function handelCancelSaveStudent() {
+    showHideSections();
+    // get data from input to student object
+    }
+
+
+    function showMessage(message) {
+        document.getElementById("message").innerHTML = message;
+        window.setTimeout(() => {
+        document.getElementById("message").innerHTML = "";
+        }, 2000);
+    }
+
+
+    function handelSaveStudent() {
+    showHideSections();
+    // currentStudentId is known, save this student
+    var e = readInputs();
+    for (let i = 0; i < data.length; i++) {
+    if (data[i].studentId == currentStudentId) {
+    data[i] = e;
+    data[i].studentId = currentStudentId;
+    break;
+    } //if
+    } //for
+    filtered_data = data;
+    showTable(filtered_data);
+    }
+    ele_iptxt.addEventListener("keyup", function () {
+    var target = ele_iptxt.value;
+    // indexOf()
+    var matched_data = filtered_data.filter(
+        (data) => data.name.toLowerCase().indexOf(target.toLowerCase()) != -1
+    );
+    showTable(matched_data);
+    });
+    ele_rbtns.forEach(function (d, index) {
+    d.addEventListener("change", function () {
+    if (index == 0) {
+    //all
+    filtered_data = data;
+    } else if (index == 1) {
+    // marks>=50
+    filtered_data = data.filter((value) => value.marks >= 50);
+    } else if (index == 2) {
+    // marks<50
+    filtered_data = data.filter((value) => value.marks < 50);
+    }
+    showTable(filtered_data);
+    });
+    });
+    var columnNames = ["rollno", "name", "marks"];
+    showTable(filtered_data);
+
+    function showTable(selected_data) {
+        var html = "";
+        for (var i = 0; i < selected_data.length; i++) {
+            html += "<tr>";
+            for (var j = 0; j < columnNames.length; j++) {
+            html += "<td>" + selected_data[i][columnNames[j]] + "</td>";
+            } //inner for
+            html += `<td><input type='button' class='delet-btn'
+            id='${selected_data[i].studentId}' name='delet' value='delet' /> </td>`;
+            html += `<td><input type='button' class='edit-btn'
+            id='${selected_data[i].studentId}' name='edit' value='edit' /> </td>`;
+            html += "</tr>";
+        } //outer for
+        ele_table.innerHTML = html;
+        showHeading();
+        handleDeleteStudent();
+        handleEditStudent();
+    }
+    
+    function handleDeleteStudent() {
+        document.querySelectorAll(".delet-btn").forEach((e, index) => {
+            e.addEventListener("click", () => {
+                // Student whose id is obtained, to be deleted
+                var s = data.filter((d) => d.studentId == e.id);
+                var ans = window.confirm(
+                "Do you really want to delete data of " + s[0].name
+                );
+                if (ans == true) {
+                data = data.filter((d) => d.studentId != e.id);
+                filtered_data = filtered_data.filter((d) => d.studentId != e.id);
+                showTable(filtered_data);
+                showMessage("Student " + s[0].name + " deleted...");
+                } else {
+                showMessage("Delete operation cancelled");
+                }
+            });
+        });
+    }
+
+    function showHideSections() {
+        ele_divedit.classList.toggle("hide");
+        ele_divlist.classList.toggle("hide");
+    }
+
+    function loadInputs(e) {
+        document.getElementById("student-rollno").value = e.rollno;
+        document.getElementById("student-name").value = e.name;
+        document.getElementById("student-marks").value = e.marks;
+    }
+
+    function readInputs() {
+        var e = {};
+        e.rollno = document.getElementById("student-rollno").value;
+        e.name = document.getElementById("student-name").value;
+        e.marks = document.getElementById("student-marks").value;
+        return e;
+    }
+
+    function loadStudentData() {
+    // get student whose studentId is obtained here
+        for (e of data) {
+            if (e.studentId == currentStudentId) {
+            break;
+            }
+        } //for
+        loadInputs(e);
+    }
+    
+    function handleEditStudent() {
+        document.querySelectorAll(".edit-btn").forEach((e, index) => {
+            e.addEventListener("click", () => {
+                showHideSections();
+                currentStudentId = e.id;
+                loadStudentData();
+            });
+        });
+    }
+
+    function showHeading() {
+    ele_heading.innerHTML = "Student's Data (" + filtered_data.length + ")";
+    }
+    // add data of students to table dynamically
+    // innerHTML / createElement() method
+    </script>
+    </body>
+    </html>

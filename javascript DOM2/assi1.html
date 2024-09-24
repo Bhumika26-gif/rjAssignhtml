@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> selete comp </title>
+    <style>
+       body {
+        background-color: rgb(236, 230, 118);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-items: flex-start;
+      }
+      #container {
+        font-size: x-large;
+        color: rgb(222, 45, 45);
+        text-align: center;
+      }
+      #radiobtns {
+        margin: 50px auto;
+      }
+      img {
+        display: block;
+        margin: 20px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+     
+    </style>
+</head>
+<body>
+  
+        <div id="container">
+          select cmponents showing birds, pet animals, wild animals
+          <div id="selecttype">
+            <select name="option" id="option" onchange="changePhotos(this.value)">
+              <option value="b">Birds</option>
+              <option value="p">Pets</option>
+              <option value="w">Wild Animals</option>
+            </select>
+          </div>
+          <img src="./b1.jpeg" alt="" id="1" >
+          <img src="./b2.jpeg" alt="" id="2" >
+          <img src="./b3.jpeg" alt="" id="3" >
+        </div>
+
+
+        <script>
+          var ele_option = document.getElementById("option");
+          var ele_imgs = document.querySelectorAll("img");
+
+          function changePhotos(category) 
+          {
+            var images = {
+              b: ["./b1.jpeg", "./b2.jpeg", "./b3.jpeg"],
+              p: ["./p1.jpeg", "./p2.jpeg", "./p3.jpeg"],
+              w: ["./w1.jpeg", "./w2.jpeg", "./w3.jpeg"]
+            };
+
+            for (var i = 0; i < ele_imgs.length; i++)
+            {
+              ele_imgs[i].src = images[category][i];
+              ele_imgs[i].alt = category.charAt(0).toUpperCase() + category.slice(1) + " Image " + (i + 1);
+            }
+          }
+        </script>
+      
+    
+   
+    
+</body>
+</html>

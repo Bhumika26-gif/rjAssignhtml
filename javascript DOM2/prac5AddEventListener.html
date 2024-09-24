@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AddEventListener Concept</title>
+</head>
+<style>
+    body{
+        text-align: center;
+    }
+    img{
+        display: block;
+        margin: 20px 20px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+</style>
+<body>
+    <div id="container">
+        <div>
+            <button id="btn" onclick="showImage()"> Click for Nature</button>
+        </div>
+        <img src="" alt="" id="nature-image">
+    </div>
+
+    <script>
+        let ele_btn = document.getElementById("btn");
+        let ele_img = document.getElementById("nature-image");
+        function showImage(){
+               //  generate random number between 1 to 5
+        var num=Math.floor(Math.random()*5) +1;
+        ele_img.setAttribute("src", "nature" + num + ".jpeg ");
+        }
+    </script>
+    
+</body>
+</html>

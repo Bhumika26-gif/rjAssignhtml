@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>select</title>
+    <style>
+        body{
+            text-align: center;
+            padding: 30px;
+        }
+        input{
+            width: 500px;
+            height: 30px;
+           font-weight: bold;
+           font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+        }
+        .select{
+            margin: 20px auto;
+        }
+        h4{
+            border: 2px solid black;
+            width: 600px;
+            height: 80px;
+            margin-left: auto;
+            margin-right: auto;
+           text-align: justify;
+        }
+        #caps{
+            background-color: blue;
+            color: aliceblue;
+        }
+        #small{
+            background-color: brown;
+            color: aliceblue;
+        }
+        #titlecase{
+            background-color: burlywood;
+            color: aliceblue;
+        }
+        #reverse{
+            background-color: chocolate;
+            color: aliceblue;
+        }
+    </style>
+</head>
+<body>
+    <div id="num">
+        <input type="text" id="num" sixe="40" onkeyup="getInput(this.value)" placeholder="Enter Some Text">
+    </div>
+    <div class="select">
+        <select name="" id="select" onchange="showSection(this)">
+            <option value="uppercase">Uppercase</option>
+            <option value="loweercase">Lowercase</option>
+            <option value="titlecase">Titlecase</option>
+            <option value="reverse">Reverse</option>
+        </select>
+    </div>
+   <h4 id="caps" class="result"></h4>
+   <h4 id="small" class="result"></h4>
+   <h4 id="titlecase" class="result"></h4>
+   <h4 id="reverse" class="result"></h4>
+
+   <script>
+    var ele_input = document.getElementById("num");
+    var ele_result = document.getElementsByClassName("result");
+    var ele_rbuttons = document.getElementsByClassName("rbutton");
+
+    function showSection(select){
+        var selectedIndex = select.selectedIndex;              //event.target.id;
+
+        for (var i =0; i<ele_result.length; i++) {
+            if(i == selectedIndex){
+            //show corrsp.section
+            ele_result[i].style.display = "block";
+            }
+            else{
+            //hide section/s
+            ele_result[i].style.display = "none";
+            }
+        }
+    }
+    function getInput(s){
+        ele_result[0].innerHTML = s.toUpperCase();
+        ele_result[1].innerHTML = s.toLowerCase();
+        ele_result[2].innerHTML = titleCase(s);
+        ele_result[3].innerHTML = reverseString(s);
+    }
+
+    function titleCase(str) {
+        str = str.toLowerCase().split("");
+        for(var i=0; i<str.length; i++)
+        {
+            str[i]= str[i].charAt(0).toUpperCase() + str[i].slice(i);
+        }
+        return str.join(" ");
+    }
+
+
+    function reverseString(str){
+            var newString="";
+            for(var i=str.length-1; i>=0; i--)
+            {
+                newString+=str[i];
+            }
+            return newString;
+        }
+    
+
+    
+   </script>
+
+</body>
+</html>

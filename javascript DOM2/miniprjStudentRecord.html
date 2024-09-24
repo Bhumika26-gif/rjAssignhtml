@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Pt StdRecord</title>
+    <style>
+      body {        
+        color: Black;         
+        font-family: Arial, Helvetica, sans-serif; 
+      }       
+      table,td {         
+        margin: auto; 
+      }       
+      td {        
+         width: 100px;         
+         text-align: center;        
+        background-color: cornflowerblue;    
+        color: white;         
+        padding: 10px; 
+      }       
+      h1 {         
+        text-align: center;        
+         color: cornflowerblue ; 
+      }       
+      button {         
+        background-color: navy;         
+        color: white;         
+        font-size: 20px; 
+      } 
+      .btn-grp { 
+        margin-bottom: 20px;         
+        text-align: center; 
+      } 
+ 
+      .active {         
+        color: red; 
+      } 
+      .div-rbtn {        
+        margin: 5px 30px;         
+        display: inline; 
+      } 
+
+        
+    </style>
+
+</head>
+<body>
+    <h1 id="heading"> </h1>
+<div class="btn-grp">
+<div class="div-rbtn">
+ Show All<input type="radio" name="show" id="" checked />
+</div>
+<div class="div-rbtn">
+ Marks>=50<input type="radio" name="show" id="" />
+</div>
+<div class="div-rbtn">
+ Marks<50<input type="radio" name="show" id="" />
+</div>
+</div>
+<table id="table-student"></table>
+
+
+    <table id="table-student" >          </table>
+    <script>
+        var data = [
+            {rollno: "01", name:"Satish", marks:"96.1"},
+            {rollno: "02", name:"atish", marks:"34.1"},
+            {rollno: "03", name:"tish", marks:"66"},
+            {rollno: "04", name:"ratish", marks:"90"},
+            {rollno: "05", name:"Sarish", marks:"56.1"},
+            {rollno: "06", name:"Satish", marks:"72."},
+            {rollno: "07", name:"Satish", marks:"66.7"},
+            {rollno: "08", name:"Satish", marks:"88.24"},
+            {rollno: "09", name:"Satish", marks:"71"},
+            {rollno: "10", name:"Satish", marks:"52.0"},
+            {rollno: "11", name:"Satish", marks:"84.65"},
+            {rollno: "12", name:"Satish", marks:"42.9"},
+            {rollno: "13", name:"Satish", marks:"39.6"},
+            {rollno: "14", name:"Satish", marks:"74.3"},
+            {rollno: "15", name:"Satish", marks:"50.8"},
+        ];
+
+        var filtered_data=data;
+        var ele_table=document.getElementById("table-student");
+        var ele_rbtns=document.querySelectorAll("input[type='radio']");
+        var ele_heading=document.getElementById("heading");
+        ele_rbtns.forEach(function(d, index)
+        {
+            d.addEventListener("change", function()
+            {
+                if(index==0)
+                {  ///all
+                    filtered_data=data;
+                }
+                else if(index==1)
+                { //marks>50
+                    filtered_data=data.filter((value )=> value.marks>=50);
+                }
+                else if(index==2)
+                { //marks<50
+                    filtered_data=data.filter((value )=> value.marks<50);
+                }
+                showTable();
+            })
+        });
+        var columnNames=["rollno", "name", "marks"];
+       
+        showTable();
+        function showTable()
+        {
+            var html="";
+                for(var i=0; i< filtered_data.length; i++)
+                {
+                 html+="<tr>" ;
+                for(var j=0; j<columnNames.length; j++)
+                {
+                   html+="<td>"+ filtered_data[i][columnNames[j]] +"</td>";
+                } //inner for loop
+                html+="</tr>";
+            }//outer for loop
+        ele_table.innerHTML=html;
+        showHeading();
+        }
+
+        function showHeading()
+        {
+            ele_heading.innerHTML="Student's Data("+ filtered_data.length+")";
+        }
+        //add data of students to table dyanamically
+        //innerhtml  / createElemen() method
+
+
+    </script>
+</body>
+</html>

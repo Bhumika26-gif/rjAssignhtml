@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Few DOM methods</title>
+    <style>
+        
+        #result{
+            background-color: rgb(133, 133, 234);
+            height: 450px;
+            padding: 20px;
+        }
+        .para{
+            border: 2px solid black;
+            color: aliceblue;
+            text-align: center;
+          width: 700px;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="result"></div>
+
+</body>
+<script>
+    ///  using some DOM methods
+    var ele_result = document.getElementById("result");
+    for(var i=0; i<10; i++)
+    {
+        var ele_p=document.createElement("p");
+        ele_result.appendChild(ele_p);
+       var ele_txt=document.createTextNode("I want to become master in web technology");
+        ele_p.appendChild(ele_txt);
+        ele_p.setAttribute("class","para");
+    }
+
+
+ // OR                  //Its Easy Way 
+
+    //ele_result = document.getElementById("result");
+    //var html = " ";
+    //for (var i=0; i<10; i++){
+    //    html+= "  <p class='para'> I want to become master in web technology </P>  "
+    //}
+    //ele_result.innerHTML = html;
+
+</script>
+</html>

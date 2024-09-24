@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArrayOfObjects</title>
+    <style>
+        .body{
+            align-items: center;
+            text-align: center;
+            padding: 10px;
+        }
+        #container{
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            background-color: cornsilk;
+            border: 1px solid black;
+            border-radius: 2px;
+            width: 600px;
+           height: 190px;
+            font-size: 20px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+       label{
+        width: 100px;
+        display: inline-block;
+       }
+       #name, #overs, #runs, #wickets{
+        margin:10px
+       }
+       #msg{
+        color:red;
+        font-size: small;
+       }
+       button{
+            font-size: 20px;
+            margin: 0 10px;
+            cursor: pointer;  
+        }
+        button:hover{
+            background-color: rgb(113, 113, 237);  
+            font-size: 25px;
+        }
+        #head{
+            color:black;
+        }
+      
+    </style>
+</head>
+<body>
+    <div class="body">
+        <h2 id="head"></h2>
+        <div id="container">
+            <div> 
+                <label> Name:</label>
+                <input type="text" placeholder="enter name"  id="name" onkeyup="getInput()">
+            </div>
+            <div>
+                <label> Overs:</label>
+                <input type="text"  id="overs" onkeyup="getInput()">
+            </div>
+            <div>
+                <label> Runs:</label>
+                <input type="text"  id="runs" onkeyup="getInput()">
+            </div>
+            <div>
+                <label> Wickets:</label>
+                <input type="text" placeholder="enter name"  id="wickets" onkeyup="getInput()">
+            </div>
+        </div><br>
+
+        <div>
+            <h4 id="msg">       </h4>
+        </div>
+        
+        <div id="button">
+            <button id="prev" onclick="showPrev() ">Prev</button>  
+            <button id="save" onclick="showSave()" >Save</button> 
+            <button id="delet" onclick="delet()"> Delete</button>
+            <button id="next" onclick="showNext()"> Next</button>
+           
+        </div>
+
+    </div>
+
+
+    <script>
+        var data=[
+            {name:"Bhuvneshwar Kumar", overs:10, runs:55,wickets:2 },
+            {name:"Hardik Panddya", overs:8, runs:20,wickets:3 },
+            {name:"Shardul Thakre", overs:4, runs:40,wickets:0},
+            {name:"Washigton Sundar", overs:9, runs:60,wickets:0 },
+            {name:"Rahul Chahar", overs:6, runs:20,wickets:1},
+        ];
+
+        // here we selectiong all elements
+        //array of input fields
+        var ele_inputs=document.querySelectorAll("input[type=text]");
+        //ARRAY OF ALL BUTTONS
+        var ele_buttons=document.getElementsByTagName("button");
+        //next button
+        var ele_next=document.getElementById("next");
+        //prev button
+        var ele_prev=document.getElementById("prev");
+        // heading
+        var ele_head=document.getElementById("head");
+        //save button
+        var ele_save=document.getElementById("save");
+        var ele_msg=document.getElementById("msg");
+
+        //sort of pointer
+        var current=0;
+        var properties=["name", "overs", "runs", "wickets"];
+        showPlayers();
+
+
+    // write a fun which displays data of players number = current
+        function showPlayers()    //or function showPlayers(current)
+        {   //object is data[current]
+            for(var i=0; i<ele_inputs.length; i++)
+            {
+                ele_inputs[i].value=data[current][properties[i]];
+                //ex: ele_inputs[0].value=data[0][properties[0]];
+                //ele_input[0].vlaue=data[0]["name"];    
+                // ele_input[0].vlaue=bhumneshwar kumar;         
+            }
+        //here we called the buttons 
+        showHeading("Player No. "+(current+1)+" of "+data.length);     // aftere show players heading   show that showHeading write herer
+        enableDisableNextPrev();              // aftere show players eable/diable bustton show that why we arite here
+        disableSave(true);
+        }
+
+        //
+    //handle next button click
+       function showNext()
+       { //increment current
+            if(current<data.length-1) 
+            { current++;
+                showPlayers();
+            }
+        }
+    //handle prev button click
+       function showPrev()
+       { // decrement current 
+        if(current>0) 
+            { current--;
+                showPlayers();
+            }
+       }
+
+    //show heading
+       function showHeading(value){
+        ele_head.innerHTML=value;
+       }
+
+    //fucntion which look after enable/ disable of next/ prev buttons
+       function enableDisableNextPrev()
+        {
+          
+           if(current>0 && current<data.length-1) 
+           {
+                ele_next.disabled=false;
+                ele_prev.disabled=false;
+           }
+           else if(current==0)
+           {
+            ele_prev.disabled=true;
+           }
+           else if(current==data.length-1)
+           {
+            ele_next.disabled=true;
+           }
+        }
+
+
+    // *** Addition of save Button ***//
+
+    //fucntion to enable/ disable of save buttons
+        function disableSave(value)
+        {
+            ele_save.disabled=value;
+        }
+     //when we get chnages then save button will be enable
+        function getInput()
+        {
+            disableSave(false);   //that means save button us now in
+        }
+
+    //IF SAVE button is click then user should be  Ask 
+    //that means we should define save function which is called when save button is click
+        function showSave(){
+            var ans=window.confirm("Do You Really Want to Save this Data?");  //var ans - ans should collect that is boolean type
+            if(ans)
+            {//save data
+                //data array in that object at current positon(data[current] shold be modified)
+                //read from input fields components nd write that assign that attributes of data[current] object
+                for(var i=0; i<ele_inputs.length; i++)
+                {
+                    data[current][properties[i]]=ele_inputs[i].value;
+                     //ex:data[0][properties[0]]= ele_inputs[0].value
+                     //data[0]["name"]=ele_input[0].value;    
+                     // bhumneshwar kumar= ele_input[0].value;         
+                }
+                showMsg("Save operation successful")
+                //then after 2 sec it will disabled
+                    window.setTimeout(() => showMsg(""), 2000);
+            }
+            else
+            {   //discard changes/ cancle sava operationn/ show msg
+                    showMsg("Save Operation aborted");
+                    window.setTimeout(() => showMsg(""), 2000);
+                //display original data
+                    showPlayers();
+            }
+        }
+
+    
+
+    
+    //****Additon of Delete button***//
+
+        function modifyCurrent()
+        {         //modify current(after delete data that not display again)
+            //was single palyer, no more data
+            if(data.length==0)
+            {
+                return -1;
+            }
+            //was last players
+            if(current==data.length)
+            {
+                return current-1;
+            }
+            //was first player or any other player
+            if(current==0) 
+            {
+                return current;
+            }   
+        }
+        function delet()
+        {
+            var name=data[current].name;
+            var ans=window.confirm("Do You Really Want to delete Data of " +name+"?");  //var ans - ans should collect that is boolean type
+            if(ans)   //yes delete
+            {//delete data
+                //code 
+                data.splice(current, 1);  //slice is use for delete 1 or more elemets from  an array
+                //modify current(after delete data that not display again)
+                 current=modifyCurrent(); 
+                   
+                 if(current==-1)
+                 {//no more data,    disable all input fields and buttons 
+                    disableIps();
+                    disableButtons();
+                    showHeading("No more data");
+                 }
+                 else 
+                 { //
+                    showPlayers();
+                 }
+
+                showMsg(name +" delete successfully");
+                window.setTimeout(() => showMsg(""), 2000);   //then after 2 sec it will disabled
+            }
+            else
+            {   //discard changes/ cancle sava operationn/ show msg
+                    showMsg("delete Operation aborted");
+                    window.setTimeout(() => showMsg(""), 2000);
+            }
+        }
+
+        //function which display msg
+        function showMsg(msg)
+        {
+            ele_msg.innerHTML=msg;
+        }
+        function disableIps()
+        {
+            for(e of ele_inputs)
+            {
+                e.disabled=true;
+                e.value="";
+            }
+        }
+        function disableButtons()
+        {
+            for(e of ele_buttons)
+            {
+                e.disabled=true;
+            }
+
+        }
+
+            
+
+      
+    //showPlayers();  //ckeck fun is working or not
+
+    </script>
+
+</body>
+</html>

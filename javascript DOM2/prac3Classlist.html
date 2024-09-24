@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClassList</title>
+</head>
+<style>
+    body{
+        text-align: center;
+        padding: 30px;  
+    }
+    #check{
+        margin: 30px auto;
+        font-weight: 600;
+        font-size: larger;
+    }
+    
+    .one{
+        color:darkgreen;
+    }
+    .two{
+        padding:10px;
+        margin:20px;
+    }
+    .three{
+        border: 5px solid black;
+    }
+    .three:hover{
+        color:rgb(229, 208, 208);
+        background-color: rgb(87, 64, 49);
+        border:none;
+    }
+    
+    .hide{
+        display:none;
+    }
+</style>
+
+<body>
+    <div id="check">
+        <input type="checkbox" name="chkbox" id="chkbox" onchang="showHide()">Show
+    </div>
+    <div id="para" class="one two three">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet nesciunt quasi magni.
+         Voluptas quasi beatae illo quo! Amet neque autem harum enim, ipsa adipisci! Placeat, 
+         fugit hic sequi temporibus similique corporis nemo dolore, porro maiores atque soluta suscipit odio ex.
+         Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit repudiandae natus debitis inventore quod doloribus explicabo,
+          accusantium voluptatem a architecto totam impedit perspiciatis aliquid voluptate consequuntur porro amet fuga autem aliquam itaque placeat? 
+          Omnis modi animi veritatis eligendi autem error in ad sapiente voluptas fuga. 
+         Soluta laudantium aut quia. Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque nihil iusto eius corrupti. A fugit impedit, 
+         et molestias, maiores aperiam provident nisi ipsam incidunt adipisci sit labore ratione officiis blanditiis?
+    </div>
+
+    <script>
+        var ele_chkbox = document.getElementById("chkbox");
+        var ele_para = document.getElementById("para");
+        console.log(ele_para.classList);
+        var cList = ele_para.classList;
+        function showHide() {
+            if(ele_chkbox.checked){
+                //ele_para.setAttribute("class", "show");
+               cList.toggle("hide");
+            }
+            else{
+                //ele_para.setAttribute("class", "hide");
+                cList.toggle("hide"); 
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AddEventListener2</title>
+    <style>
+        #container{
+            text-align: center;
+            font-size: x-large;
+            color: #f86c09;
+          margin: 50px auto;
+          padding: 30px;
+       
+        }
+        img{
+            display: none;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="radiobtns">
+          <input  type="checkbox" name="bird" class="chkbox" >Bird1
+          <input  type="checkbox" name="bird" class="chkbox" >Bird2
+          <input type="checkbox" name="bird" class="chkbox" >Bird3
+        </div>
+        <img src="nature1.jpeg" alt="" class="birdimage">
+            <img src="nature3.jpeg" alt="" class="birdimage">
+            <img src="nature5.jpeg" alt="" class="birdimage">     
+    
+    </div>
+    <script>
+        // let eleImage=document.image;
+        let ele_chkboxes = document.getElementsByClassName("chkbox");
+        let ele_images = document.getElementsByClassName("birdimage");
+
+     // using 1. Regular-for loop   
+
+        for(let i = 0; i< ele_chkboxes.length; i++)
+        {
+            ele_chkboxes[i].addEventListener("change", function()
+            {
+                if(this.checked){
+                        ele_images[i].style.display = " block";
+                    }
+                    else{
+                        ele_images[i].style.display = " none";
+                      } 
+            });
+        }
+         function showHideBird(event)
+        {
+            for(let i = 0; i< ele_chkboxes.length; i++)
+            {
+                    if(ele_chkboxes[i].checked){
+                    ele_images[i].style.display = " block";
+                }
+                else{
+                    ele_images[i].style.display = " none";
+                        }       
+            }
+        }
+
+
+     //using 2.ForEach
+
+       //let ele_cbs = document.querySelector("input[type='checkbox']"); //("chkbox");
+      // ele_cbs.forEach(function(data,index)
+    //{
+         // attach event to a checkbox(data)
+        data.addEventListener("change", function()
+        {
+            if(this.checked)
+            {
+                ele_images[index].style.display = " block";
+             }
+            else{
+                ele_images[index].style.display = " none";
+            } 
+        });
+    //});
+
+    </script>
+</body>
+</html>

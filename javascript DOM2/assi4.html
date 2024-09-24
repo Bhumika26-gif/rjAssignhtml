@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Calculator</title>
+    <style>
+      body,
+      html {
+        margin: 0px;
+      }
+      input[type="button"] {
+        border: none;
+        width: 100%;
+        background-color: rgb(78, 94, 85);
+        height: 40px;
+        font-size: 20px;
+      }
+      input[type="button"]:hover {
+        border: 3px solid violet;
+      }
+      
+      input[type="text"] {
+        font-size: 30px; 
+      }
+      #wrap {
+        margin: 50px auto;
+        text-align: center;
+        
+      }
+      table {
+        margin: 10px auto;
+      }
+      td {
+        width: 80px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrap">
+        <h2>Calculated Button</h2>
+      <table>
+        <tr>
+          <td colspan="3"><input type="text" id="result" size="12" placeholder="Enter Number"></td>
+        </tr>
+        <tr>
+          <td><input type="button" class="ip" value="7" onclick="appendNumber('7')" ></td>
+          <td><input type="button" class="ip" value="8" onclick="appendNumber('8')" ></td>
+          <td><input type="button" class="ip" value="9" onclick="appendNumber('9')" ></td>
+        </tr>
+        <tr>
+          <td><input type="button" class="ip" value="4" onclick="appendNumber('4')" ></td>
+          <td><input type="button" class="ip" value="5" onclick="appendNumber('5')" ></td>
+          <td><input type="button" class="ip" value="6" onclick="appendNumber('6')" ></td>
+        </tr>
+        <tr>
+          <td><input type="button" class="ip" value="1" onclick="appendNumber('1')" ></td>
+          <td><input type="button" class="ip" value="2" onclick="appendNumber('2')" ></td>
+          <td><input type="button" class="ip" value="3" onclick="appendNumber('3')" ></td>
+        </tr>
+        <tr>
+          <td><input type="button" class="ip" value="0" onclick="appendNumber('0')" ></td>
+          <td><input type="button" id="cancel" value="X" onclick="backspace()" ></td>
+          <td><input type="button" id="clear" value="C" onclick="clearResult()" ></td>
+        </tr>
+      </table>
+    </div>
+  </body>
+  <script>
+    var eleResult = document.getElementById("result");
+    var ele_clear = document.getElementById("clear");
+    var ele_cancle = document.getElementById("cancel");
+    
+
+    function appendNumber(num) {
+      eleResult.value += num;
+      ele_clear.disabled = false;
+      ele_cancle.disabled = false;
+    }
+
+    function clearResult() {
+      eleResult.value = "";
+      ele_clear.disabled = true;
+      ele_cancle.disabled = true;
+    }
+
+    function backspace() {
+      eleResult.value = eleResult.value.slice(0, -1);
+      if (eleResult.value === "") {
+        ele_clear.disabled = true;
+        ele_cancle.disabled = true;
+      }
+    }
+  </script>
+</html>

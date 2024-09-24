@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SelectComponents</title>
+    <style>
+        body{
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 30px;
+            text-align: center;
+        }
+        .grp{
+            width:80%;
+            margin: 10px auto;
+            background-color: bisque;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="grp">
+        <select name="" id="select" onchange="fun(this)">
+           <!-- <option value="c">C</option>
+            <option value="c++">C++</option>
+            <option value="java">JAVA</option>
+            <option value="python">PYTHON</option>
+            <option value="php">PHP</option> -->
+        </select>
+    </div>
+   <script>
+    var options=["c","c++","java","python","php"];
+    var ele_select=document.getElementById("select");
+    addOptions();
+    function addOptions()
+    {
+        var html="";
+        for(var i=0; i<options.length; i++)
+        {
+            html+="<option value=''>"+options[i]+"</option>";
+        }
+        ele_select.innerHTML=html;
+    }
+    function fun(source)
+    {  //[In this function we have to select this selete element (we can fet use using id also nd use document.getelelmentbyid) instead of this way use shotcut dirctly passed fun(this)]
+        //   console.log(source);
+        //  console.log(source.selectedIndex);  ex:c = its index is "0" php= its index is "4" etc..,
+      //  console.log(source.value);      ex: c++ = its value is "c++"
+    }
+   </script>
+
+    
+</body>
+</html>
